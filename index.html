@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LINE LIFF UserID取得</title>
+  <meta charset="UTF-8">
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body>
+  <h2>あなたのLINE UserID</h2>
+  <p id="userid">読み込み中...</p>
+
+  <script>
+    async function main() {
+      await liff.init({ liffId: "ここにあなたのLIFF IDを入力" });
+
+      if (!liff.isLoggedIn()) {
+        liff.login();
+        return;
+      }
+
+      const profile = await liff.getProfile();
+      document.getElementById("userid").innerText = profile.userId;
+    }
+
+    main();
+  </script>
+</body>
+</html>
